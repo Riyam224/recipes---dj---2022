@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block content  %}
+    <!-- main -->
+    <main class="page">
+      <section class="recipes-container">
+        <!-- tag container -->
+        <div class="tags-container">
+          <h4>recipes</h4>
+          <div class="tags-list">
+            {% for category in categories %}
+            <a href="{% url 'property_by_category' category %}">{{ category.name }} </a>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- end of tag container -->
+        <!-- recipes list -->
+        <div class="recipes-list">
+
+            {% for object in recipe_category  %}
+          <!-- single recipe -->
+          <a href="single-recipe.html" class="recipe">
+            <img
+              src="{{object.image.url }}"
+              class="img recipe-img"
+              alt=""
+            />
+            <h5>{{ object.name }}</h5>
+            <p>Prep : {{ object.prep_time }}min | Cook : {{ object.cook_time }}min</p>
+          </a>
+          <!-- end of single recipe -->
+          {% endfor %}
+     
+        </div>
+      </section>
+    </main>
+    <!-- end of main -->
+  
+    {% endblock content  %}
